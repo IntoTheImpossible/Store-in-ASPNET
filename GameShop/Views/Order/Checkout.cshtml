@@ -1,0 +1,27 @@
+﻿@model Order
+
+<style>
+    .form-group
+    {
+        margin-bottom: 20px;
+    }
+    
+    .header
+    {
+        margin-top: 100px;
+    }
+</style>
+
+<div class="row bg-dark offset-3 col-md-5 g-3">
+    <h4 class="header text-light">Zamów</h4>
+    <p class="text-light">Po przetworzeniu zamówienia zostaniesz przeniesiony na stronę płatności.</p>
+<form asp-action="Checkout" method="post" class="form-horizontal">
+  <div class="form-group">
+            <input asp-for="ClientName" class="form-control" placeholder="Wpisz swoje imię i nazwisko">
+  </div>
+  <div class="form-group">
+            <input asp-for="Email" class="form-control" placeholder="Wprowadź swój adres e-mail">
+  </div>
+        <input class="btn btn-success" type="submit" value="Złóż zamówienie" />
+</form>
+</div>

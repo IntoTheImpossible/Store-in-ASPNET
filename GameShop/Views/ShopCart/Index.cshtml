@@ -1,0 +1,85 @@
+﻿@using System.Globalization
+@model ShopCartViewModel
+
+
+<style>    
+    .tbl-img
+    {
+        width: 100%;
+        max-width: 150px !important;
+    }
+
+    .container
+    {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .container {
+  padding: 2rem 0rem;
+}
+
+    h4 {
+    margin: 2rem 0rem 1rem;
+}
+
+    img {
+        margin-top: 5px;
+        margin-bottom: 5px;
+  }
+
+    .table-img-delete
+       {
+         margin-top: 7px;
+       }
+
+</style>
+
+<div class="container offset-3">
+    <h3 class="text-light g-3">Koszyk</h3>
+    @if (Model.shopCart.ListShopItems.Count() == 0)
+    {
+        <p class="text-light">Twój koszyk jest pusty. Napraw to!</p>
+    }
+    else
+    {
+
+    <div class="row">
+    <div class="col-8">
+		<table class="table"> 
+
+  <thead>
+    <tr>
+      <th scope="col"> </th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+
+		  <tbody>
+        
+
+
+        @foreach (var el in Model.shopCart.ListShopItems)
+        {         
+                <tr>
+
+		      <td class="w-25">
+			     <div id="tbl-img"><img class="tbl-img rounded shadow-sm" src="@el.Game.Image" alt="@el.Game.Name" style="max-width: 300px"/></div>
+		      </td>
+
+		      <td class="align-middle"><p class="price text-light text-center">@el.Game.Name </p></td>
+		      <td class="align-middle"><p class="text-light text-center">@el.Game.Price.ToString("c", new CultureInfo("pl-PL"))</td>
+              <td align="right"><a asp-controller="ShopCart" asp-action="deleteFromCart" asp-route-id="@el.Id"><img class="table-img-delete" src="/icons/x-lg.svg" alt="Delete" width="21" height="21"></a></td>    
+		    </tr>
+        }
+        		  </tbody>
+		</table>
+                <h5 class="alert alert-dark text-dark">Łącznie: @Model.shopCart.InTotal.ToString("c", new CultureInfo("pl-PL"))</h5> 
+        <hr />
+    <a class="btn btn-success" href="/Order/Checkout">Płatność</a>  
+        </div>
+  </div>
+    }
+

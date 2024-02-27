@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=KIRO;Database=DbGameShop;User Id=sa;Password=Kiro1234;TrustServerCertificate=True;MultipleActiveResultSets=true"
+  }
+}

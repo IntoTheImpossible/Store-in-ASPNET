@@ -1,0 +1,41 @@
+﻿@using System.Globalization
+@model Game
+
+<style>
+
+</style>
+
+        <div class="col">
+          <div class="card bg-light shadow-sm">
+            <img src="@Model.Image" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></img>
+
+            <div class="card-body">
+                @if (@Model.IsAvailable)
+                {
+                    <h5 style="display:inline;float:left;">@Model.Name</h5>
+                <p style="display:inline;float:right;">W magazynie</p>
+                    <hr style="clear:both;"/>
+                } else
+                {
+                    <h5 style="display:inline;float:left;">@Model.Name</h5>
+                    <p style="display:inline;float:right;">Czasowo Niedostępne</p>
+                    <hr style="clear:both;"/>
+                }
+            <p class="card-text">@Model.Desc</p>
+              <div class="d-flex justify-content-between align-items-center">
+                    <h6>@Model.Price.ToString("c", new CultureInfo("pl-PL"))</h6>
+                @if (@Model.IsAvailable)
+                {
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-success" asp-controller="ShopCart" asp-action="addToCart" asp-route-id="@Model.Id">Dodaj do koszyka</a>
+                    </div>
+                } else 
+                {
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary">Przykro nam. Ale ta gra jest niedostępna.</a>
+                    </div>
+                }
+            </div>
+            </div>
+          </div>
+        </div>
